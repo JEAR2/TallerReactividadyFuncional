@@ -13,9 +13,10 @@ public class Operation {
         //List<Email> lista = filter(getEmail());
         //List<Email> lista = validEmail(getEmail());
         //Long listaCantidad = countEmails(getEmail());
-        viewEmailType(getEmail());
-       // System.out.println("La cantidad de correos es: "+listaCantidad);
-        //lista.stream().forEach(System.out::println);
+        //viewEmailType(getEmail());
+        List<Email> lista = verifyEmail(getEmail());
+        //System.out.println("La cantidad de correos es: "+listaCantidad);
+        lista.stream().forEach(System.out::println);
     }
 
     public static  List<Email> distinct(List<Email> lista ){
@@ -30,8 +31,6 @@ public class Operation {
     public static List<Email> validEmail(List<Email> lista){
        return  lista.stream().filter(email-> email.getEmail().matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"))
                .map(email->new Email(email.getEmail(),email.isSend())).collect(Collectors.toList());
-
-
 
     }
 
@@ -54,8 +53,9 @@ public class Operation {
         return lista.stream().count();
     }
 
-
-
+    public static List<Email> verifyEmail(List<Email> lista){
+        return lista.stream().filter(email->email.isSend()).map(email -> new Email(email.getEmail(), !email.isSend())).collect(Collectors.toList());
+    }
 
 
     public static List<Email> getEmail(){
@@ -92,4 +92,6 @@ public class Operation {
                 new Email("persona@pinguino.com",true)
         );
     }
+
+
 }
