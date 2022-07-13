@@ -35,7 +35,24 @@ public class Operation {
 
     }
 
-    
+    public static void viewEmailType(List<Email> lista){
+        System.out.println("Cantidad de correos Hotmail: "+ countHotmail(lista));
+        System.out.println("Cantidad de correos Gmail: "+ countGmail(lista));
+        System.out.println("Cantidad de correos outlook: "+ countOutlook(lista));
+    }
+    private static int countHotmail(List<Email> lista){
+       return lista.stream().filter(email -> email.getEmail().toLowerCase().contains("hotmail")).collect(Collectors.toList()).size();
+    }
+    private static int countGmail(List<Email> lista){
+        return lista.stream().filter(email -> email.getEmail().toLowerCase().contains("gmail")).collect(Collectors.toList()).size();
+    }
+    private static int countOutlook(List<Email> lista){
+        return lista.stream().filter(email -> email.getEmail().toLowerCase().contains("outlook")).collect(Collectors.toList()).size();
+    }
+
+    public static Long countEmails(List<Email> lista){
+        return lista.stream().count();
+    }
 
 
 
