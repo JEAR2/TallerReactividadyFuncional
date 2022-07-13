@@ -19,7 +19,6 @@ public class Operation {
         List<String> listaDePalabrasIngresadas = Arrays.stream(palabraIngresada.split(" ")).toList();
         Flux.fromIterable(listaDePalabrasIngresadas)
                 .map(palabra -> {
-
                     if (lista.toString().contains(palabra.toLowerCase())) {
                         palabra = "****";
                     }
