@@ -4,13 +4,18 @@ import com.example.tallerReactivo.primerpunto.model.Email;
 
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Operation {
     public static void main(String[] args) {
         //List<Email> lista = distinct(getEmail());
-        List<Email> lista = filter(getEmail());
-        lista.stream().forEach(System.out::println);
+        //List<Email> lista = filter(getEmail());
+        //List<Email> lista = validEmail(getEmail());
+        //Long listaCantidad = countEmails(getEmail());
+        viewEmailType(getEmail());
+       // System.out.println("La cantidad de correos es: "+listaCantidad);
+        //lista.stream().forEach(System.out::println);
     }
 
     public static  List<Email> distinct(List<Email> lista ){
@@ -22,7 +27,15 @@ public class Operation {
                .collect(Collectors.toList());
     }
 
+    public static List<Email> validEmail(List<Email> lista){
+       return  lista.stream().filter(email-> email.getEmail().matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$"))
+               .map(email->new Email(email.getEmail(),email.isSend())).collect(Collectors.toList());
 
+
+
+    }
+
+    
 
 
 
@@ -37,17 +50,17 @@ public class Operation {
                 new Email("asdasd@gmail.com",true),
                 new Email("asdasd@gmail.com",true),
                 new Email("maria@gmail.com",false),
-                new Email("sandra@gmail.com",true),
+                new Email("sandra@pepito.com",true),
                 new Email("felipe@sofka.com",true),
                 new Email("daniel@gmail.com",false),
                 new Email("ricardo@gmail.com",true),
                 new Email("pedro@dutty.com",true),
                 new Email("santioago@gmail.com",true),
-                new Email("julian@gmail.com",false),
+                new Email("julian@hotmail.com",false),
                 new Email("camila@gmail.com",false),
                 new Email("sancocho@unipamplona.com",false),
                 new Email("teresa@gmail.com",true),
-                new Email("coraxon12@gmail.com",true),
+                new Email("coraxon12@carnal.com",true),
                 new Email("oscar@gmail.com",true),
                 new Email("sebastian@gmail.com",true),
                 new Email("gato@gmail.com",true),
@@ -58,8 +71,8 @@ public class Operation {
                 new Email("juan@gmail.com",false),
                 new Email("esperanza@gmail.com",false),
                 new Email("juana@gmail.com",true),
-                new Email("valentina@gmail.com",true),
-                new Email("persona@gmail.com",true)
+                new Email("valentinagmail.com",true),
+                new Email("persona@pinguino.com",true)
         );
     }
 }
